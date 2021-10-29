@@ -1,0 +1,18 @@
+version: '3.9'
+services:
+    denver:
+        container_name: denver
+        image: DenverGamer:latest
+        build:
+            context: ./
+            dockerfile: ./Dockerfile
+        restart: always
+    dtogether:
+        container_name: dtogether
+        image: dtogether:latest
+        ports:
+            - '8080:8080'
+        build:
+            context: ./
+            dockerfile: ./DiscordTogether/Dockerfile
+        restart: always
