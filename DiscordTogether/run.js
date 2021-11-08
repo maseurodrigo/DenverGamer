@@ -54,6 +54,15 @@ client.on('messageCreate', async message => {
                 });
             } else { message.reply({ embeds: [notConnected] }); };
             break;
+        case BotData.DiscordBotPrefix.concat('checkers'):
+            // If user isnt present in any voice channel
+            if (message.member.voice.channel) {
+                client.discordTogether.createTogetherCode(message.member.voice.channel.id, 'checkers').then(async invite => {
+                    console.log(`${message.member.voice.channel.id}: ${message.content}`);
+                    return message.reply(`${invite.code}`).then(msg => { setTimeout(() => msg.delete(), 5000) });
+                });
+            } else { message.reply({ embeds: [notConnected] }); };
+            break;
     }
 });
 
