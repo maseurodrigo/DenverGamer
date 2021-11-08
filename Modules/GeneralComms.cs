@@ -68,5 +68,9 @@ namespace DenverGamer.Modules
         [Command("spellcast")]
         [Summary("Play a **Spell Cast** game with other users on a voice channel")]
         public async Task discTogether_SpellCast() { await Task.CompletedTask; }
+
+        [Command("checkers")]
+        [Summary("Play a **Checkers** game with other users on a voice channel")]
+        public async Task discTogether_Checkers() { await Task.CompletedTask; }
     }
 }
