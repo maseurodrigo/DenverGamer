@@ -1,17 +1,15 @@
-version: '3.9'
+version: '3.8'
 services:
-    denver:
-        container_name: denver
+    denvergamer:
+        container_name: denvergamer
         image: denvergamer:latest
         build:
             context: ./
             dockerfile: ./Dockerfile
         restart: always
-    dtogether:
-        container_name: dtogether
-        image: dtogether:latest
-        ports:
-            - '8080:8080'
+    disctogether:
+        container_name: disctogether
+        image: disctogether:latest
         build:
             context: ./
             dockerfile: ./DiscordTogether/Dockerfile
