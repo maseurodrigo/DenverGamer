@@ -8,9 +8,6 @@ const defaultApplications = {
     doodlecrew: '878067389634314250',
     spellcast: '852509694341283871',
     checkers: '832013003968348200',
-
-
-
     lettertile: '879863686565621790',
     fishing: '814288819477020702',
     wordsnack: '879863976006127627',
