@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using DenverGamer.Data;
 using Discord;
-using Discord.Addons.Interactive;
 using Discord.Commands;
 using Discord.WebSocket;
 
@@ -13,15 +12,12 @@ namespace DenverGamer.Services
         // Discord default vars.
         public static DiscordSocketClient discordClient { get; set; }
         public static CommandService discordCommands { get; set; }
-        public static InteractiveService discordInteractive { get; set; }
         public static IServiceProvider discordService { get; set; }
         public static BotData botData { get; set; }
 
-        public CommHandler(DiscordSocketClient _discordClient, CommandService _discordCommands, InteractiveService _discordInteractive,
-            IServiceProvider _discordService, BotData _botData) {
+        public CommHandler(DiscordSocketClient _discordClient, CommandService _discordCommands, IServiceProvider _discordService, BotData _botData) {
             discordClient = _discordClient;
             discordCommands = _discordCommands;
-            discordInteractive = _discordInteractive;
             discordService = _discordService;
             botData = _botData;
             // DiscordSocketClient functions
@@ -39,14 +35,11 @@ namespace DenverGamer.Services
                 SocketUserMessage discMessage = message as SocketUserMessage;
                 // Detect whether the entered text will be associated with a command
                 if (discMessage.HasStringPrefix(botData.BotPrefix, ref argPos)) {
-                    SocketCommandContext mssgContext = new SocketCommandContext(discordClient, discMessage);
-                    await discordCommands.ExecuteAsync(mssgContext, argPos, discordService);
+                    await discordCommands.ExecuteAsync(new SocketCommandContext(discordClient, discMessage), argPos, discordService);
                 }
             }
         }
 
-        private async Task botLogEvents(LogMessage arg) { 
-            await Task.Factory.StartNew(() => { Console.WriteLine(arg.ToString()); });
-        }
+        private async Task botLogEvents(LogMessage arg) { await Task.Factory.StartNew(() => { Console.WriteLine(arg.ToString()); }); }
     }
 }
